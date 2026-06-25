@@ -1013,10 +1013,11 @@ new Phaser.Game({
         arcade: { gravity: { y: GAME_CONFIG.gravity }, debug: false }
     },
     scale: {
-        mode:       Phaser.Scale.FIT,   // mantiene proporción en cualquier pantalla
-        autoCenter: Phaser.Scale.CENTER_BOTH,
-        width:  960,
-        height: 540,
-    },
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 960,
+    height: 540,
+    expandParent: true
+},
     scene: [ MainMenu, Level1, Level2, Level3, LevelClear, CatScene ]
 });
