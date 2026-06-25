@@ -588,7 +588,7 @@ class Level1 extends Phaser.Scene {
     preload() { preloadSprites(this); }
 
     create() {
-        const WW = 6000, WH = 600, GY = 568;
+        const WW = 6400, WH = 600, GY = 568;
         const GS = GY - 20;   // superficie del suelo
 
         this.physics.world.setBounds(0, 0, WW, 2000);
