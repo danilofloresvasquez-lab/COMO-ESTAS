@@ -218,6 +218,21 @@ function makeHUD(scene, levelNum) {
     pauseBtn.on("pointerdown", () => { if (scene.togglePause) scene.togglePause(); });
     pauseBtn.on("pointerover",  () => pauseBtn.setStyle({ backgroundColor: "#2980b999" }));
     pauseBtn.on("pointerout",   () => pauseBtn.setStyle({ backgroundColor: "#00000099" }));
+
+    const fullBtn = scene.add.text(W - 168, 10, " ⛶ ", {
+    fontSize: "19px",
+    color: "#fff",
+    backgroundColor: "#00000099",
+    padding: { x: 6, y: 4 }
+}).setScrollFactor(0).setDepth(20).setInteractive({ useHandCursor: true });
+
+fullBtn.on("pointerdown", () => {
+    if (scene.scale.isFullscreen) {
+        scene.scale.stopFullscreen();
+    } else {
+        scene.scale.startFullscreen();
+    }
+});
 }
 
 // ── Overlay de pausa ──────────────────────────────────────────
@@ -1013,11 +1028,8 @@ new Phaser.Game({
         arcade: { gravity: { y: GAME_CONFIG.gravity }, debug: false }
     },
     scale: {
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: 960,
-    height: 540,
-    expandParent: true
-},
+        mode:       Phaser.Scale.FIT,   // mantiene proporción en cualquier pantalla
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
     scene: [ MainMenu, Level1, Level2, Level3, LevelClear, CatScene ]
 });
