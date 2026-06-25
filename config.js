@@ -22,31 +22,28 @@ const GAME_CONFIG = {
         "Srta. Wale": 0xff66b3
     },
 
-    // ── SPRITES (PNG opcionales) ──────────────────────────────
-    // Para usar una imagen PNG en lugar de un rectángulo de color,
-    // coloca el archivo en la misma carpeta y escribe el nombre aquí.
-    // Ejemplo: playerSprite: "personaje.png"
-    // Si está vacío ("") se usa el rectángulo de color por defecto.
+    // ── SPRITES PNG OPCIONALES ────────────────────────────────
+    // Coloca el archivo .png en la misma carpeta que index.html
+    // y escribe el nombre aquí. Si está vacío ("") se usa color.
     sprites: {
-        player:   "",        // PNG del jugador   (34×54 px recomendado)
-        enemy:    "",        // PNG del enemigo   (34×34 px recomendado)
-        ground:   "",        // PNG del suelo     (40×40 px recomendado, se repite en mosaico)
-        platform: "",        // PNG de plataformas (se repite en mosaico)
-        tree:     "",        // PNG de árbol decorativo
+        player:  "",   // PNG del jugador (34×54 px recomendado)
+        enemy:   "",   // PNG del enemigo (34×34 px recomendado)
+        cat:     "",   // PNG del gato   (44×44 px recomendado)
     },
 
-    // ── LETREROS ─────────────────────────────────────────────
+    // ── GATO (escena final) ───────────────────────────────────
+    catName:   "Gatito",
+    catColor:  0xFF8C00,   // naranja — cámbialo cuando tengas el PNG
+    catSpeech: "¡Me encontraste!\n¿Cómo estás? 🐱",
 
-    // Mensajes que aparecen en los letreros del nivel 1
+    // ── LETREROS EN NIVELES ───────────────────────────────────
     level1Signs: [
         "¡Bienvenida a nuestra aventura!",
         "Cada paso que damos juntos...",
         "...es un recuerdo que guardo.",
-        "¡Sigue adelante, casi llegas!",
-        "Ya casi terminas el Mundo 1..."
+        "¡Sigue adelante, casi llegas!"
     ],
 
-    // Mensajes del nivel 2
     level2Signs: [
         "¡Mundo 2! Más difícil...",
         "Como nosotros: cada día algo nuevo.",
@@ -54,7 +51,6 @@ const GAME_CONFIG = {
         "Ya casi terminas el Mundo 2..."
     ],
 
-    // Mensajes del nivel 3
     level3Signs: [
         "¡Último mundo! El más especial.",
         "Gracias por estar en mi vida.",
@@ -62,28 +58,31 @@ const GAME_CONFIG = {
         "¡Casi llegamos!"
     ],
 
-    // ── MENSAJE FINAL ─────────────────────────────────────────
-    finalMessage: "¿Cómo estás?",
+    // ── MENSAJE FINAL (pantalla después del gato) ─────────────
+    // Edita estos textos a tu gusto:
+    finalMessage:    "¿Cómo estás?",
     finalSubMessage: "Espero que estés muy bien,\nporque yo estoy mejor desde que te conozco ❤️",
 
-    // ── COLORES ───────────────────────────────────────────────
-
-    // Colores de las plataformas por nivel
+    // ── COLORES DE PLATAFORMAS POR NIVEL ──────────────────────
     platformColors: {
-        1: 0x5D4E37,   // tierra marrón
+        1: 0x5D4E37,   // marrón tierra
         2: 0x6C3483,   // morado oscuro
         3: 0xC0392B    // rojo atardecer
     },
 
-    // Colores de los bloques del suelo (patrón ladrillo) por nivel
+    // Color de los bloques ladrillo del suelo
     groundBlockColors: {
-        1: 0x795548,   // ladrillo marrón
-        2: 0x7B1FA2,   // morado ladrillo
-        3: 0xD84315    // naranja rojizo
+        1: 0x795548,
+        2: 0x7B1FA2,
+        3: 0xD84315
     },
 
-    // Color base de los bloques flotantes (? bloques)
-    questionBlockColor: 0xF9A825,
+    // Color de los obstáculos en el suelo (muros)
+    wallColors: {
+        1: 0x4E342E,
+        2: 0x4A148C,
+        3: 0xBF360C
+    },
 
     // Color de los enemigos
     enemyColor: 0xE74C3C,
@@ -92,36 +91,5 @@ const GAME_CONFIG = {
     playerSpeed: 250,
     jumpForce:   550,
     gravity:     1000,
-    enemySpeed:  80,
-
-    // ── ENEMIGOS POR NIVEL ────────────────────────────────────
-    // Cada entrada: { x, y, left, right }
-    //   x, y      → posición inicial (pon al enemigo sobre el suelo o plataforma)
-    //   left/right → límites de patrullaje en X
-    //
-    // Para cambiar el aspecto: modifica sprites.enemy arriba con el nombre de tu PNG.
-
-    level1Enemies: [
-        { x: 850,  y: 540, left: 720,  right: 970  },
-        { x: 1600, y: 540, left: 1500, right: 1750 },
-        { x: 2300, y: 540, left: 2150, right: 2450 },
-        { x: 3000, y: 440, left: 2900, right: 3120 },   // sobre plataforma
-        { x: 4300, y: 540, left: 4130, right: 4700 },
-    ],
-
-    level2Enemies: [
-        { x: 700,  y: 540, left: 550,  right: 850  },
-        { x: 1300, y: 540, left: 1150, right: 1450 },
-        { x: 2300, y: 540, left: 2150, right: 2500 },
-        { x: 3200, y: 350, left: 3130, right: 3330 },   // sobre plataforma
-        { x: 4100, y: 540, left: 3950, right: 4250 },
-    ],
-
-    level3Enemies: [
-        { x: 600,  y: 540, left: 450,  right: 750  },
-        { x: 1400, y: 540, left: 1320, right: 1600 },
-        { x: 2200, y: 540, left: 2050, right: 2400 },
-        { x: 2950, y: 270, left: 2860, right: 3070 },   // sobre plataforma
-        { x: 3500, y: 540, left: 3230, right: 3650 },
-    ],
+    enemySpeed:  75,
 };
